@@ -1,22 +1,18 @@
 # IGC_UE
  
-Plugin build for Unreal Engine 4.27. This plugin will capture renders spun around a target object and export out a JSON file of the relative camera transforms. It can upload the necessary files to the IGC API to process.
-
-## Contains
-* Example Third Person Project
-* IGC Plug-in within Plugins/IGC_UE
+Plugin build for Unreal Engine 4.27. This plugin will capture renders spun around a target object and export out a JSON file of the relative camera transforms. It will upload the necessary files to the IGC API to process to re-create a printable mesh.
 
 ## How to use
-* Attach to target Actor
+* Attach *BP_Capturer* to target Actor
 * Adjust *Radius* to fit whole Actor
+* Use events *Capture Renders* and then *Upload Captures* in *BP_Capturer*
 * Renders/files will be outputed to *PROJECTNAME/OUTPUTS/Captures/*
 * The Capturer will be centered on the Actor's pivot point.
+* *BP_CaptureUploader* has an empty event *UseQRCode* which is given a Texture2D parameter of a QR Code leading to the API's checkout
 
 ## Parameters
 * Frame Count
     * Number of images to be rendered out
-* Path XSpeed
-    * The amount of revolutions around the Actor the camera goes
 * Radius
     * Radius around the target actor the camera will go
 * Camera FOV
@@ -25,12 +21,22 @@ Plugin build for Unreal Engine 4.27. This plugin will capture renders spun aroun
     * Dimensions of render width & height
 * Extra Actors
     * Any extra actors that should be rendered out with the Actor
-* Spawn Custom Lighting
-    * If true, will spawn four point lights around Actor to attempt to even out lighting.
 
 ## Notes
 * The Capturer will render out attached Actor, the Actor's children and and *Extra Actors*
 * The rendered images on disk will outputted with an inverted alpha. The alpha will be flipped while it gets processed within the API.
-* The transforms.json file will get reformatted with the API to work with instant-ngp.
 
+## Best Practices
+* Having an evenly lit character will give the best results. Any shadows on the mesh will be baked into the final model.
+* Pure unlit shaders are not recommended. The meshing process needs shading to figure out the depth of points within a model.
+* Recommended:
+    * Lit shaders with fixed lights around character
+    * Unlit shaders with strong ambient occlusion
+* Highly specular materials can create artifacts within the final model
+* Lighting is even more important on simple, stylized characters, as any shadows baked on are a lot more noticeable than detailed characters.
 
+![shaded](https://github.com/In-Game-Collectables/IGC_UE4/assets/35625367/71d33916-9a49-4877-a4d0-e9e998340bb1)
+Un-ideal: Would have shadows baked in and model will be printed out darker compared to 
+
+![lit](https://github.com/In-Game-Collectables/IGC_UE4/assets/35625367/2a2e12b0-9354-4175-9926-84b5c4418576)
+Ideal: Mostly evenly lit with rough materials.
