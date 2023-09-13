@@ -32,19 +32,45 @@ Plugin build for Unreal Engine 4.27. This plugin will capture renders spun aroun
 * The Capturer will render out attached Actor, the Actor's children and and *Extra Actors*
 * The rendered images on disk will outputted with an inverted alpha. The alpha will be flipped while it gets processed within the API.
 
+<p align="center">
+<img src="https://github.com/In-Game-Collectables/IGC_UE4/assets/35625367/e0cde956-24da-406e-a4f3-b4caf6348f6e" width="256" height="256">
+ <h6 align="center">Output Example</h6>
+</p>
+
+
 ## Best Practices
-* At least 100 frames at 2048x2048 should be uploaded for best quality
-* The mesh should not have any floating pieces
+* At least 100 frames at 2048x2048 should be uploaded for best quality.
+* The character should take up as much space possible within the renders without cutting anything off.
+* The mesh should not have any floating pieces.
 * Having an evenly lit character will give the best results. Any shadows on the mesh will be baked into the final model.
-* Pure unlit shaders are not recommended. The meshing process needs shading to figure out the depth of points within a model.
-* Recommended:
+* Pure unlit shaders are not recommended. The meshing process needs at least a bit of shading to figure out the depth of points within a model.
+* Recommended lighting set ups:
+    * Lit shaders with ambient lighting
     * Lit shaders with fixed lights around character
     * Unlit shaders with strong ambient occlusion
-* Highly specular materials can create artifacts within the final model
-* Lighting is even more important on simple, stylized characters, as any shadows baked on are a lot more noticeable than detailed characters.
+* Materials with high roughness and little specular are recommended.
+* Highly specular and highly metallic materials will create artifacts within the final model.
+* Lighting is even more important on simple, stylized characters, as any shadows baked on are a lot more noticeable on simple characters rather than detailed characters.
 
-![shaded](https://github.com/In-Game-Collectables/IGC_UE4/assets/35625367/71d33916-9a49-4877-a4d0-e9e998340bb1)
-Un-ideal: Would have shadows baked in and model will be printed out darker compared to 
+<p align="center">
+<img src="https://github.com/In-Game-Collectables/IGC_UE4/assets/35625367/e018ec43-adc9-499a-93c0-48ae76b465e7" width="512" height="256">
+<img src="https://github.com/In-Game-Collectables/IGC_UE4/assets/35625367/3025d1d8-fd54-4fff-b602-1d2a4935f81f" width="512" height="256">
+ <h6 align="center">Directional Lighting vs. Evenly Shaded</h6>
+</p>
 
-![lit](https://github.com/In-Game-Collectables/IGC_UE4/assets/35625367/2a2e12b0-9354-4175-9926-84b5c4418576)
-Ideal: Mostly evenly lit with rough materials.
+### Examples
+<p align="center">
+ 
+![pigeon](https://github.com/In-Game-Collectables/IGC_UE4/assets/35625367/0de3ea1d-7b58-44ab-aae1-a9b133c3b298)
+
+![robot](https://github.com/In-Game-Collectables/IGC_UE4/assets/35625367/011f8c02-86a3-467d-bde5-a02fbf65b6ba)
+
+![mushroom](https://github.com/In-Game-Collectables/IGC_UE4/assets/35625367/6c4fd85a-ff61-4e3e-ad42-46d6b329a899)
+
+</p>
+
+[Pigeon](https://sketchfab.com/3d-models/pigeon-quirky-series-e607ed34d37d433496d5a557c8230b28)
+
+[Robot](https://sketchfab.com/3d-models/robot-4-b0c5f2f5ac04402dad029d6516d706b9)
+
+[Mushroom](https://sketchfab.com/3d-models/cuute-mushroom-ffc370ddc6d542d590b9f503d0892ce0)
