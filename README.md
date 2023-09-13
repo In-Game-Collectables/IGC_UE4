@@ -16,7 +16,7 @@ Plugin build for Unreal Engine 4.27. This plugin will capture renders spun aroun
 * The API will return a URL to the checkout page after the upload is complete
 * *BP_CaptureUploader* has an empty event *UseQRCode* which is given a Texture2D parameter of a QR Code leading to the API's checkout page when everything is finished
 
-## Parameters
+### Parameters
 * Frame Count
     * Number of images to be rendered out
 * Radius
@@ -34,7 +34,7 @@ Plugin build for Unreal Engine 4.27. This plugin will capture renders spun aroun
 
 <p align="center">
 <img src="https://github.com/In-Game-Collectables/IGC_UE4/assets/35625367/e0cde956-24da-406e-a4f3-b4caf6348f6e" width="256" height="256">
- <h6 align="center">Output Example</h6>
+ <p align="center">Output Example</p>
 </p>
 
 
@@ -55,10 +55,10 @@ Plugin build for Unreal Engine 4.27. This plugin will capture renders spun aroun
 <p align="center">
 <img src="https://github.com/In-Game-Collectables/IGC_UE4/assets/35625367/e018ec43-adc9-499a-93c0-48ae76b465e7" width="512" height="256">
 <img src="https://github.com/In-Game-Collectables/IGC_UE4/assets/35625367/3025d1d8-fd54-4fff-b602-1d2a4935f81f" width="512" height="256">
- <h6 align="center">Directional Lighting vs. Evenly Shaded</h6>
+ <p align="center">Directional Lighting vs. Evenly Shaded</p>
 </p>
 
-### Examples
+### Ideal Lighting Examples
 <p align="center">
  
 ![pigeon](https://github.com/In-Game-Collectables/IGC_UE4/assets/35625367/0de3ea1d-7b58-44ab-aae1-a9b133c3b298)
