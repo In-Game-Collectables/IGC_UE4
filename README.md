@@ -33,7 +33,7 @@ Plugin build for Unreal Engine 4.27. This plugin will capture renders spun aroun
 * The rendered images on disk will outputted with an inverted alpha. The alpha will be flipped while it gets processed within the API.
 
 <p align="center">
-<img src="https://github.com/In-Game-Collectables/IGC_UE4/assets/35625367/e0cde956-24da-406e-a4f3-b4caf6348f6e" width="256" height="256">
+<img src="https://github.com/In-Game-Collectables/IGC_UE4/assets/35625367/9e6035e0-48d5-4040-927e-9dccc46c11f6" width="256" height="256">
  <p align="center">Output Example</p>
 </p>
 
@@ -53,19 +53,19 @@ Plugin build for Unreal Engine 4.27. This plugin will capture renders spun aroun
 * Lighting is even more important on simple, stylized characters, as any shadows baked on are a lot more noticeable on simple characters rather than detailed characters.
 
 <p align="center">
-<img src="https://github.com/In-Game-Collectables/IGC_UE4/assets/35625367/e018ec43-adc9-499a-93c0-48ae76b465e7" width="512" height="256">
-<img src="https://github.com/In-Game-Collectables/IGC_UE4/assets/35625367/3025d1d8-fd54-4fff-b602-1d2a4935f81f" width="512" height="256">
+<img src="https://github.com/In-Game-Collectables/IGC_UE4/assets/35625367/7e9cc2ff-6b6d-4bad-ad04-623516f5c90f" width="512" height="256">
+<img src="https://github.com/In-Game-Collectables/IGC_UE4/assets/35625367/c0c76996-15bb-43bb-b677-d2165eb56a15" width="512" height="256">
  <p align="center">Directional Lighting vs. Evenly Shaded</p>
 </p>
 
 ### Ideal Lighting Examples
 <p align="center">
- 
-![pigeon](https://github.com/In-Game-Collectables/IGC_UE4/assets/35625367/0de3ea1d-7b58-44ab-aae1-a9b133c3b298)
 
-![robot](https://github.com/In-Game-Collectables/IGC_UE4/assets/35625367/011f8c02-86a3-467d-bde5-a02fbf65b6ba)
+![pigeon](https://github.com/In-Game-Collectables/IGC_UE4/assets/35625367/13398085-397f-43d2-8756-01e94a8c5d3d)
 
-![mushroom](https://github.com/In-Game-Collectables/IGC_UE4/assets/35625367/6c4fd85a-ff61-4e3e-ad42-46d6b329a899)
+![robot](https://github.com/In-Game-Collectables/IGC_UE4/assets/35625367/51be5bf6-64f0-45fa-85ec-996c11f8b183)
+
+![mushroom](https://github.com/In-Game-Collectables/IGC_UE4/assets/35625367/1604f6ef-7124-40d0-9a0d-7403ae29ded6)
 
 </p>
 
