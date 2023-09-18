@@ -4,6 +4,8 @@ This document is currently a work in progress.
 Plugin build for Unreal Engine 4.27. This plugin will capture renders spun around a target object and export out a JSON file of the relative camera transforms. It will upload the necessary files to the IGC API to process to re-create a printable mesh.
 
 ## How to use
+### Step 1: Set Up
+* Input your API_key into *BP_Capturer*
 ### Capturing:
 * Attach *BP_Capturer* to target Actor
 * Adjust *Radius* to fit whole Actor
@@ -15,7 +17,9 @@ Plugin build for Unreal Engine 4.27. This plugin will capture renders spun aroun
 * Use event *Upload Captures* in *BP_Capturer*. This will upload all images and files within *PROJECTNAME/OUTPUTS/Captures/* to the API
 * The API will return a URL to the checkout page after the upload is complete
 * *BP_CaptureUploader* has an empty event *UseQRCode* which is given a Texture2D parameter of a QR Code leading to the API's checkout page when everything is finished
+### Checkout
 
+<br />
 ### Parameters
 * Frame Count
     * Number of images to be rendered out
