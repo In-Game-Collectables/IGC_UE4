@@ -5,19 +5,20 @@ Plugin build for Unreal Engine 4.27. This plugin will capture renders spun aroun
 
 ## How to use
 ### Step 1: Set Up
-* Input your API_key into *BP_Capturer*
-### Capturing:
+* Get your API Key from the [IGC Platform](https://platform.igc.studio/collectables)
 * Attach *BP_Capturer* to target Actor
+* Input your API_key into *BP_Capturer*
 * Adjust *Radius* to fit whole Actor
-* Use events *Capture Renders* in *BP_Capturer*
-* Renders/files will be outputed to *PROJECTNAME/OUTPUTS/Captures/*
 * The Capturer will be centered on the Actor's pivot point.
+### Step 2: Capturing:
 * Use event *Capture Renders* in *BP_Capturer*. This will export out all needed renders/files. This may freeze the game up to a couple seconds depending on the dimensions of the renders.
-### Uploading
+* Renders/files will be outputed to *PROJECTNAME/OUTPUTS/Captures/*
+### Step 3: Uploading
 * Use event *Upload Captures* in *BP_Capturer*. This will upload all images and files within *PROJECTNAME/OUTPUTS/Captures/* to the API
 * The API will return a URL to the checkout page after the upload is complete
+### Step 4: Checkout
 * *BP_CaptureUploader* has an empty event *UseQRCode* which is given a Texture2D parameter of a QR Code leading to the API's checkout page when everything is finished
-### Checkout
+
 
 <br />
 ### Parameters
