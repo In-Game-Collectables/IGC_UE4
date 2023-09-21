@@ -8,8 +8,8 @@
 #include "HTTPModule.h"
 #include "CaptureUploader.generated.h"
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnUploadComplete, bool, onSucceeded, FString, ResponseCode, FString, CheckoutURL);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnQRReceived, bool, onSucceeded, UTexture2D*, QRTexture);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnUploadCompleted, bool, onSucceeded, FString, Message, FString, CheckoutURL);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnQRReceived, bool, onSucceeded, FString, Message, UTexture2D*, QRTexture);
 
 UCLASS()
 class IGC_UE_API ACaptureUploader : public AActor
@@ -21,7 +21,7 @@ public:
 	ACaptureUploader();
 
 	UPROPERTY(BlueprintAssignable, Category = "IGC")
-		FOnUploadComplete OnUploadCompleted;
+		FOnUploadCompleted OnUploadCompleted;
 
 	UPROPERTY(BlueprintAssignable, Category = "IGC")
 		FOnQRReceived OnQRReceived;
@@ -49,6 +49,6 @@ private:
 
 	FString GetBoundaryString(FString Name, FString FileName, FString Type);
 
-	void OnResponseReceived(FHttpRequestPtr Request, FHttpResponsePtr Response, bool bConnectedSuccessfully);
+	void OnUploadResponseReceived(FHttpRequestPtr Request, FHttpResponsePtr Response, bool bConnectedSuccessfully);
 	void OnCheckoutResponseReceived(FHttpRequestPtr Request, FHttpResponsePtr Response, bool bConnectedSuccessfully);
 };

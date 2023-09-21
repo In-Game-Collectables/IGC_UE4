@@ -5,8 +5,6 @@
 #include "IImageWrapperModule.h"
 #include "ImageUtils.h"
 
-// Sets default values
-
 TArray<uint8> FStringToUint8(const FString& InString)
 {
 	TArray<uint8> OutBytes;
@@ -23,27 +21,24 @@ ACaptureUploader::ACaptureUploader()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
-
 }
 
 // Called when the game starts or when spawned
 void ACaptureUploader::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 // Called every frame
 void ACaptureUploader::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 void ACaptureUploader::UploadCaptures(FString CaptureFolderPath, FString API_Key)
 {
-	FString TransformFile = CaptureFolderPath + "/transforms.json";
-	FString ImageFolderPath = CaptureFolderPath + "/images/";
+	FString TransformFile = FPaths::Combine(CaptureFolderPath, TEXT("transforms.json"));
+	FString ImageFolderPath = FPaths::Combine(CaptureFolderPath, TEXT("images"));
 
 	TSharedRef<IHttpRequest, ESPMode::ThreadSafe> Request = (&FHttpModule::Get())->CreateRequest();
 	Request->SetURL("https://platform.igc.studio/api/create");
@@ -54,7 +49,7 @@ void ACaptureUploader::UploadCaptures(FString CaptureFolderPath, FString API_Key
 	BoundaryEnd = FString(TEXT("\r\n--")) + BoundaryLabel + FString(TEXT("--\r\n"));
 
 	Request->SetHeader(TEXT("Content-Type"), FString(TEXT("multipart/form-data; boundary=")) + BoundaryLabel);
-	Request->OnProcessRequestComplete().BindUObject(this, &ACaptureUploader::OnResponseReceived);
+	Request->OnProcessRequestComplete().BindUObject(this, &ACaptureUploader::OnUploadResponseReceived);
 
 	TArray<uint8> CombinedContent; // payload
 
@@ -63,6 +58,8 @@ void ACaptureUploader::UploadCaptures(FString CaptureFolderPath, FString API_Key
 	if (!FFileHelper::LoadFileToArray(TransformFileRawData, *TransformFile)) {
 		UE_LOG(LogTemp, Error, TEXT("ERROR: %s"), *FString("transforms.json could not be found"));
 		UE_LOG(LogTemp, Error, TEXT("%s"), *FString("Exiting"));
+
+		OnUploadCompleted.Broadcast(false, "Error: transforms.json could not be found for upload.", "");
 		return;
 	}
 
@@ -74,14 +71,15 @@ void ACaptureUploader::UploadCaptures(FString CaptureFolderPath, FString API_Key
 
 	if (Files.Num() == 0)
 	{
-		UE_LOG(LogTemp, Error, TEXT("ERROR: %s"), *FString("images could not be found"));
+		UE_LOG(LogTemp, Error, TEXT("Error: %s"), *FString("images could not be found"));
 		UE_LOG(LogTemp, Error, TEXT("%s"), *FString("Exiting"));
+		OnUploadCompleted.Broadcast(false, "Error: Images to upload could not be found.", "");
 		return;
 	}
 
 	for (FString file : Files)
 	{
-		FilePath = ImageFolderPath + file;
+		FilePath = FPaths::Combine(ImageFolderPath, file);
 		ImageSetBoundaryString = GetBoundaryString("image_set[]", file, "image/png");
 		FFileHelper::LoadFileToArray(ImageFileRawData, *FilePath);
 
@@ -132,11 +130,10 @@ FString ACaptureUploader::GetBoundaryString(FString Name, FString FileName, FStr
 	return FileBoundaryString;
 }
 
-void ACaptureUploader::OnResponseReceived(FHttpRequestPtr Request, FHttpResponsePtr Response, bool bConnectedSuccessfully)
+void ACaptureUploader::OnUploadResponseReceived(FHttpRequestPtr Request, FHttpResponsePtr Response, bool bConnectedSuccessfully)
 {
-	UE_LOG(LogTemp, Display, TEXT("Response: %s"), *Response->GetContentAsString());
-	
-	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, *Response->GetContentAsString());
+	//UE_LOG(LogTemp, Display, TEXT("Success: Uploaded Captures. Response: %s"), *Response->GetContentAsString());
+	//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, *Response->GetContentAsString());
 
 	TSharedPtr<FJsonObject> JsonObject = MakeShareable(new FJsonObject());
 	TSharedRef<TJsonReader<TCHAR>> JsonReader = TJsonReaderFactory<TCHAR>::Create(Response->GetContentAsString());
@@ -151,9 +148,15 @@ void ACaptureUploader::OnResponseReceived(FHttpRequestPtr Request, FHttpResponse
 		order_path = JsonObject->GetStringField("order_path");
 		UE_LOG(LogTemp, Display, TEXT("id: %s"), *FString(id));
 
-		//FPlatformProcess::LaunchURL(*FString(order_path), NULL, NULL);
+		FString message = "Success: Uploaded Captures. Reponse: " + Response->GetContentAsString() + ". Code: " + FString::FromInt(Response->GetResponseCode());
+		OnUploadCompleted.Broadcast(success, message, order_path);
 	}
-	OnUploadCompleted.Broadcast(success, FString::FromInt(Response->GetResponseCode()), order_path);
+	else
+	{
+		FString message = "Error: Uploaded Captures but could not retrieve Checkout URL. Reponse: " + Response->GetContentAsString() + ". Code: " + FString::FromInt(Response->GetResponseCode());
+		OnUploadCompleted.Broadcast(success, message, order_path);
+	}
+
 }
 
 
@@ -164,12 +167,14 @@ void ACaptureUploader::OnCheckoutResponseReceived(FHttpRequestPtr Request, FHttp
 	TArray<uint8> RawImageData = Response->GetContent();
 
 	IImageWrapperModule& ImageWrapperModule = FModuleManager::LoadModuleChecked<IImageWrapperModule>(FName("ImageWrapper"));
-	IImageWrapperPtr ImageWrapper = ImageWrapperModule.CreateImageWrapper(EImageFormat::PNG);
+	//IImageWrapperPtr ImageWrapper = ImageWrapperModule.CreateImageWrapper(EImageFormat::PNG); // deprecated?
+	TSharedPtr<IImageWrapper> ImageWrapper = ImageWrapperModule.CreateImageWrapper(EImageFormat::PNG);
+
 	UTexture2D* QRTexture;
 
 	if (ImageWrapper.IsValid() && ImageWrapper->SetCompressed(RawImageData.GetData(), RawImageData.Num()))
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("QR retrieved successfully"));
+		//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("QR retrieved successfully"));
 		//UE_LOG(LogTemp, Display, TEXT("QR retrieved successfully"));
 
 		const TArray<uint8>* uncompressedBGRA = NULL;
@@ -185,12 +190,17 @@ void ACaptureUploader::OnCheckoutResponseReceived(FHttpRequestPtr Request, FHttp
 			QRTexture->PlatformData->Mips[0].BulkData.Unlock();
 
 			QRTexture->UpdateResource();
-			OnQRReceived.Broadcast(true, QRTexture);
+			OnQRReceived.Broadcast(true, "Success: QR Code retrieved successfully", QRTexture);
+		}
+		else
+		{
+			OnQRReceived.Broadcast(false, "Error: Connected to API but could not retrieve QR Code",NULL);
 		}
 	}
 	else
 	{
 		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Something went wrong while retrieving QR Code"));
+		OnQRReceived.Broadcast(false, "Error: Connected to API but could not retrieve QR Code", NULL);
 		//UE_LOG(LogTemp, Display, TEXT("Something went wrong while retrieving QR Code"));
 	}
 }
