@@ -15,13 +15,19 @@ Plugin build for Unreal Engine 4.27. This plugin will capture renders spun aroun
 * Renders/files will be outputed to *PROJECTNAME/OUTPUTS/Captures/*
 ### Step 3: Uploading
 * Use event *Upload Captures* in *BP_Capturer*. This will upload all images and files within *PROJECTNAME/OUTPUTS/Captures/* to the API
-* The API will return a URL to the checkout page after the upload is complete
+* The event dispatcher *onUploadFinished* will be called when the Upload finishes. It will return:
+    * Succeeded: Whether the upload succeeded
+    * Message: Information about if the upload succeeded or why it failed
+    * QRTexture: QR Code Texture of the link to the Checkout page
+    * Checkout URL to the Checkout page
 ### Step 4: Checkout
-* *BP_CaptureUploader* has an empty event *UseQRCode* which is given a Texture2D parameter of a QR Code leading to the API's checkout page when everything is finished
-
+* Use the event dispatcher *onUploadFinished* to get either the link to the Checkout page or the Texture2D of the QR Code:
 
 <br />
+
 ### Parameters
+* API_Key
+    * API Key for the IGC Platform
 * Frame Count
     * Number of images to be rendered out
 * Radius
@@ -47,7 +53,7 @@ Plugin build for Unreal Engine 4.27. This plugin will capture renders spun aroun
 * At least 100 frames at 2048x2048 should be uploaded for best quality.
 * The character should take up as much space possible within the renders without cutting anything off.
 * The mesh should not have any floating pieces.
-* Having an evenly lit character will give the best results. Any shadows on the mesh will be baked into the final model.
+* Having an evenly lit character will give the best results. Any shadows/lighting on the mesh will be baked into the final model.
 * Pure unlit shaders are not recommended. The meshing process needs at least a bit of shading to figure out the depth of points within a model.
 * Recommended lighting set ups:
     * Lit shaders with ambient lighting

@@ -8,8 +8,8 @@
 #include "HTTPModule.h"
 #include "CaptureUploader.generated.h"
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnUploadCompleted, bool, onSucceeded, FString, Message, FString, CheckoutURL);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnQRReceived, bool, onSucceeded, FString, Message, UTexture2D*, QRTexture);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnUploadCompleted, bool, bSucceeded, FString, Message, FString, CheckoutURL);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnQRReceived, bool, bSucceeded, FString, Message, UTexture2D*, QRTexture, FString, CheckoutURL);
 
 UCLASS()
 class IGC_UE_API ACaptureUploader : public AActor
@@ -50,5 +50,5 @@ private:
 	FString GetBoundaryString(FString Name, FString FileName, FString Type);
 
 	void OnUploadResponseReceived(FHttpRequestPtr Request, FHttpResponsePtr Response, bool bConnectedSuccessfully);
-	void OnCheckoutResponseReceived(FHttpRequestPtr Request, FHttpResponsePtr Response, bool bConnectedSuccessfully);
+	void OnCheckoutResponseReceived(FHttpRequestPtr Request, FHttpResponsePtr Response, bool bConnectedSuccessfully, FString CheckoutURL);
 };

@@ -106,7 +106,7 @@ void ACaptureUploader::Checkout(FString CaptureFolderPath, FString CheckoutURL)
 	Request->SetURL(CheckoutURL + "/qr");
 	Request->SetVerb("GET");
 
-	Request->OnProcessRequestComplete().BindUObject(this, &ACaptureUploader::OnCheckoutResponseReceived);
+	Request->OnProcessRequestComplete().BindUObject(this, &ACaptureUploader::OnCheckoutResponseReceived, CheckoutURL);
 	Request->ProcessRequest();
 }
 
@@ -160,7 +160,7 @@ void ACaptureUploader::OnUploadResponseReceived(FHttpRequestPtr Request, FHttpRe
 }
 
 
-void ACaptureUploader::OnCheckoutResponseReceived(FHttpRequestPtr Request, FHttpResponsePtr Response, bool bConnectedSuccessfully)
+void ACaptureUploader::OnCheckoutResponseReceived(FHttpRequestPtr Request, FHttpResponsePtr Response, bool bConnectedSuccessfully, FString CheckoutURL)
 {
 	//UE_LOG(LogTemp, Display, TEXT("Response: %s"), *Response->GetContentAsString());
 	//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, *Response->GetContentAsString());
@@ -190,17 +190,17 @@ void ACaptureUploader::OnCheckoutResponseReceived(FHttpRequestPtr Request, FHttp
 			QRTexture->PlatformData->Mips[0].BulkData.Unlock();
 
 			QRTexture->UpdateResource();
-			OnQRReceived.Broadcast(true, "Success: QR Code retrieved successfully", QRTexture);
+			OnQRReceived.Broadcast(true, "Success: QR Code retrieved successfully", QRTexture, CheckoutURL);
 		}
 		else
 		{
-			OnQRReceived.Broadcast(false, "Error: Connected to API but could not retrieve QR Code",NULL);
+			OnQRReceived.Broadcast(false, "Error: Connected to API but could not retrieve QR Code", NULL, CheckoutURL);
 		}
 	}
 	else
 	{
 		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Something went wrong while retrieving QR Code"));
-		OnQRReceived.Broadcast(false, "Error: Connected to API but could not retrieve QR Code", NULL);
+		OnQRReceived.Broadcast(false, "Error: Connected to API but could not retrieve QR Code", NULL, CheckoutURL);
 		//UE_LOG(LogTemp, Display, TEXT("Something went wrong while retrieving QR Code"));
 	}
 }
