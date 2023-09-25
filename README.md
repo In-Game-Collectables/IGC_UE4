@@ -9,10 +9,15 @@ Plugin build for Unreal Engine 4.27. This plugin will capture renders spun aroun
 * Attach *BP_Capturer* to target Actor
 * Input your API_key into *BP_Capturer*
 * Adjust *Radius* to fit whole Actor
-* The Capturer will be centered on the Actor's pivot point.
+* The Capturer will be centered on the Actor's pivot point
+* Read the Best Practices section for the ideal set up
 ### Step 2: Capturing:
-* Use event *Capture Renders* in *BP_Capturer*. This will export out all needed renders/files. This may freeze the game up to a couple seconds depending on the dimensions of the renders.
+* Use event *Capture* in *BP_Capturer*. This will export out all needed renders/files
+    * The input parameter *Async* determines if there should  be a delay between captures
+    * If *Async* is false, this may freeze the game up to a couple seconds depending on the dimensions of the renders
+        * *Async* should NOT be used if the Target character or lighting can animate/change between frames
 * Renders/files will be outputed to *PROJECTNAME/OUTPUTS/Captures/*
+* The event *CaptureAndUpload* can be used to combine the steps for Capturing and Uploading
 ### Step 3: Uploading
 * Use event *Upload Captures* in *BP_Capturer*. This will upload all images and files within *PROJECTNAME/OUTPUTS/Captures/* to the API
 * The event dispatcher *onUploadFinished* will be called when the Upload finishes. It will return:
@@ -41,6 +46,7 @@ Plugin build for Unreal Engine 4.27. This plugin will capture renders spun aroun
 
 ## Notes
 * The Capturer will render out attached Actor, the Actor's children and and *Extra Actors*
+* The variable *CurrentStage* on *BP_Capturer* can be used to see
 * The rendered images on disk will outputted with an inverted alpha. The alpha will be flipped while it gets processed within the API.
 
 <p align="center">
