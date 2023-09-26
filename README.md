@@ -46,7 +46,7 @@ Plugin build for Unreal Engine 4.27. This plugin will capture renders spun aroun
 
 ## Notes
 * The Capturer will render out attached Actor, the Actor's children and and *Extra Actors*
-* The variable *CurrentStage* on *BP_Capturer* can be used to see
+* The variable *CurrentStage* on *BP_Capturer* can be used to see if it is currently Capturing, Uploading, CheckingOut, or not doing anything.
 * The rendered images on disk will outputted with an inverted alpha. The alpha will be flipped while it gets processed within the API.
 
 <p align="center">
