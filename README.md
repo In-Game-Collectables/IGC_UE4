@@ -10,11 +10,11 @@ Plugin build for Unreal Engine 4.27. This plugin will capture renders spun aroun
 * Input your API_key into *BP_Capturer*
 * Adjust *Radius* to fit whole Actor
 * The Capturer will be centered on the Actor's pivot point
-* Read the Best Practices section for the ideal set up
+* Read the [Best Practices](https://github.com/In-Game-Collectables/IGC_UE4#best-practices) section for the ideal set up
 ### Step 2: Capturing:
 * Use event *Capture* in *BP_Capturer*. This will export out all needed renders/files
-    * The input parameter *Async* determines if there should  be a delay between captures
-    * If *Async* is false, this may freeze the game up to a couple seconds depending on the dimensions of the renders
+    * The input parameter *Async* determines if there should be a delay between captures
+        * If *Async* is false, this may freeze the game up to a couple seconds depending on the dimensions of the renders
         * *Async* should NOT be used if the Target character or lighting can animate/change between frames
 * Renders/files will be outputed to *PROJECTNAME/OUTPUTS/Captures/*
 * The event *CaptureAndUpload* can be used to combine the steps for Capturing and Uploading
