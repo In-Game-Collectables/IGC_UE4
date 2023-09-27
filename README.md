@@ -26,7 +26,7 @@ Plugin build for Unreal Engine 4.27. This plugin will capture renders spun aroun
     * QRTexture: QR Code Texture of the link to the Checkout page
     * Checkout URL to the Checkout page
 ### Step 4: Checkout
-* Use the event dispatcher *onUploadFinished* to get either the link to the Checkout page or the Texture2D of the QR Code:
+* Use the event dispatcher *onUploadFinished* to get either the link to the Checkout page or the Texture2D of the QR Code
 
 <br />
 
@@ -47,13 +47,6 @@ Plugin build for Unreal Engine 4.27. This plugin will capture renders spun aroun
 ## Notes
 * The Capturer will render out attached Actor, the Actor's children and and *Extra Actors*
 * The variable *CurrentStage* on *BP_Capturer* can be used to see if it is currently Capturing, Uploading, CheckingOut, or not doing anything.
-* The rendered images on disk will outputted with an inverted alpha. The alpha will be flipped while it gets processed within the API.
-
-<p align="center">
-<img src="https://github.com/In-Game-Collectables/IGC_UE4/assets/35625367/9e6035e0-48d5-4040-927e-9dccc46c11f6" width="256" height="256">
- <p align="center">Output Example</p>
-</p>
-
 
 ## Best Practices
 * At least 100 frames at 2048x2048 should be uploaded for best quality.
