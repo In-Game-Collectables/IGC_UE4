@@ -68,6 +68,7 @@ Plugin build for Unreal Engine 4.27. This plugin will capture renders spun aroun
 * Materials with high roughness and little specular are recommended.
 * Highly specular and highly metallic materials will create artifacts within the final model.
 * Lighting is even more important on simple, stylized characters, as any shadows baked on are a lot more noticeable on simple characters rather than detailed characters.
+* Warning: If *"Auto-Exposure"* is turned on within the project, the render will not match what the viewport looks like. It will probably instead seem much dimmer.
 
 <p align="center">
 <img src="https://github.com/In-Game-Collectables/IGC_UE4/assets/35625367/7e9cc2ff-6b6d-4bad-ad04-623516f5c90f" width="512" height="256">
