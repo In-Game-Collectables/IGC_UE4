@@ -94,7 +94,7 @@ void ACaptureUploader::UploadCaptures(FString CaptureFolderPath, FString API_Key
 
 	if (API_Scale != "")
 	{
-		CombinedContent.Append(FStringToUint8(AddData("api_scale_param", API_Scale)));
+		CombinedContent.Append(FStringToUint8(AddData("api_param_scale", API_Scale)));
 	}
 
 	CombinedContent.Append(FStringToUint8(AddData("source", "UnrealEngine")));
