@@ -31,6 +31,8 @@ Plugin build for Unreal Engine 4.27. This plugin will capture renders spun aroun
 <br />
 
 ### Parameters
+
+Capturing:
 * API_Key
     * API Key for the IGC Platform
 * Frame Count
@@ -43,6 +45,14 @@ Plugin build for Unreal Engine 4.27. This plugin will capture renders spun aroun
     * Dimensions of render width & height
 * Extra Actors
     * Any extra actors that should be rendered out with the Actor
+
+Rendering:
+* Brightness
+    * Brightness multiplier for render outputs
+* Contrast
+    * To adjust contrast for render outputs
+* Desaturation
+    * To lower colour saturation of render outputs
 
 ## Notes
 * The Capturer will render out attached Actor, the Actor's children and and *Extra Actors*
