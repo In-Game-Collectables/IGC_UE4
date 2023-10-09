@@ -35,7 +35,7 @@ void ACaptureUploader::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
-void ACaptureUploader::UploadCaptures(FString CaptureFolderPath, FString API_Key)
+void ACaptureUploader::UploadCaptures(FString CaptureFolderPath, FString API_Key, FString API_Scale)
 {
 	FString TransformFile = FPaths::Combine(CaptureFolderPath, TEXT("transforms.json"));
 	FString ImageFolderPath = FPaths::Combine(CaptureFolderPath, TEXT("images"));
@@ -91,6 +91,11 @@ void ACaptureUploader::UploadCaptures(FString CaptureFolderPath, FString API_Key
 	CombinedContent.Append(TransformFileRawData);
 
 	CombinedContent.Append(FStringToUint8(AddData("api_key", API_Key)));
+
+	if (API_Scale != "")
+	{
+		CombinedContent.Append(FStringToUint8(AddData("api_scale_param", API_Scale)));
+	}
 
 	CombinedContent.Append(FStringToUint8(AddData("source", "UnrealEngine")));
 	CombinedContent.Append(FStringToUint8(BoundaryEnd));
