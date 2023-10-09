@@ -57,6 +57,7 @@ Rendering:
 ## Notes
 * The Capturer will render out attached Actor, the Actor's children and and *Extra Actors*
 * The variable *CurrentStage* on *BP_Capturer* can be used to see if it is currently Capturing, Uploading, CheckingOut, or not doing anything.
+* Warning: If *Auto-Exposure* is turned on within the project, the render will not match what the viewport looks like. It will probably instead seem much dimmer.
 
 ## Best Practices
 * At least 100 frames at 2048x2048 should be uploaded for best quality.
@@ -71,7 +72,6 @@ Rendering:
 * Materials with high roughness and little specular are recommended.
 * Highly specular and highly metallic materials will create artifacts within the final model.
 * Lighting is even more important on simple, stylized characters, as any shadows baked on are a lot more noticeable on simple characters rather than detailed characters.
-* Warning: If *"Auto-Exposure"* is turned on within the project, the render will not match what the viewport looks like. It will probably instead seem much dimmer.
 
 <p align="center">
 <img src="https://github.com/In-Game-Collectables/IGC_UE4/assets/35625367/7e9cc2ff-6b6d-4bad-ad04-623516f5c90f" width="512" height="256">
