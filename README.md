@@ -9,7 +9,6 @@ Plugin build for Unreal Engine 4.27. This plugin will capture renders spun aroun
 * Attach *BP_Capturer* to target Actor
 * Input your API_key into *BP_Capturer*
 * Adjust *Radius* to fit whole Actor
-* The Capturer will be centered on the Actor's pivot point
 * Read the [Best Practices](https://github.com/In-Game-Collectables/IGC_UE4#best-practices) section for the ideal set up
 ### Step 2: Capturing:
 * Use event *Capture* in *BP_Capturer*. This will export out all needed renders/files
@@ -61,10 +60,15 @@ Rendering:
     * Use the *Render Parameters* on *BP_Capturer* to boost the brightness in this case.
 
 ## Best Practices
-* At least 100 frames at 2048x2048 should be uploaded for best quality.
+### Settings
+* At least 100 frames at 1024x1024 should be uploaded for best quality.
+### Mesh
 * The character should take up as much space possible within the renders without cutting anything off.
 * The mesh should not have any floating pieces.
+* Backfaces should not be missing.
+### Rendered Image
 * Use the *Render Parameters* wihtin *BP_Capturer* to make adjustments to the final render if you would like them brighter etc.
+### Lighting & Materials
 * Having an evenly lit character will give the best results. Any shadows/lighting on the mesh will be baked into the final model.
 * Pure unlit shaders are not recommended. The meshing process needs at least a bit of shading to figure out the depth of points within a model.
 * Recommended lighting set ups:
@@ -72,8 +76,8 @@ Rendering:
     * Lit shaders with fixed lights around character
     * Unlit shaders with strong ambient occlusion
 * Materials with high roughness and little specular are recommended.
-* Highly specular and highly metallic materials will create artifacts within the final model.
-* Lighting is even more important on simple, stylized characters, as any shadows baked on are a lot more noticeable on simple characters rather than detailed characters.
+    * Highly specular and highly metallic materials will create artifacts within the final model.
+* Lighting is even more important on simple, stylized characters, as any shadows baked on are a lot more noticeable.
 
 <p align="center">
 <img src="https://github.com/In-Game-Collectables/IGC_UE4/assets/35625367/7e9cc2ff-6b6d-4bad-ad04-623516f5c90f" width="512" height="256">
