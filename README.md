@@ -87,6 +87,7 @@ Rendering:
  <p align="center">Not Ideal vs. Ideal Lighting</p>
 </p>
 
+
 ### Ideal Lighting Examples
 <p align="center">
 
