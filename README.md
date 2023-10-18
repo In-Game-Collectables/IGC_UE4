@@ -82,9 +82,9 @@ Rendering:
 * Lighting is even more important on simple, stylized characters, as any shadows baked on are a lot more noticeable.
 
 <p align="center">
-<img src="https://github.com/In-Game-Collectables/IGC_UE4/assets/35625367/7e9cc2ff-6b6d-4bad-ad04-623516f5c90f" width="512" height="256">
-<img src="https://github.com/In-Game-Collectables/IGC_UE4/assets/35625367/c0c76996-15bb-43bb-b677-d2165eb56a15" width="512" height="256">
- <p align="center">Directional Lighting vs. Evenly Shaded</p>
+<img src="https://github.com/In-Game-Collectables/IGC_UE4/assets/35625367/1bde3a22-3f1c-4ebe-8474-6d6d48db950a" width="512" height="256">
+<img src="https://github.com/In-Game-Collectables/IGC_UE4/assets/35625367/3d1ebcc1-6054-4b0a-8d4e-32d3a91b110a" width="512" height="256">
+ <p align="center">Not Ideal vs. Ideal Lighting</p>
 </p>
 
 ### Ideal Lighting Examples
