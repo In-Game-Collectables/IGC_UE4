@@ -1,7 +1,7 @@
 # IGC_UE
 This document is currently a work in progress.
- 
-Plugin build for Unreal Engine 4.27. This plugin will capture renders spun around a target object and export out a JSON file of the relative camera transforms. It will upload the necessary files to the IGC API to process to re-create a printable mesh.
+
+[In Game Collectables](https://www.igc.studio/) Plugin for Unreal Engine 4.27. This plugin will capture renders spun around a target object and export out a JSON file of the relative camera transforms. It will upload the necessary files to the IGC API to process to re-create a printable mesh.
 
 ## How to use
 ### Step 1: Set Up
@@ -53,6 +53,7 @@ Rendering:
 * Desaturation
     * To lower colour saturation of render outputs
 
+
 ## Notes
 * The Capturer will render out attached Actor, the Actor's children and and *Extra Actors*
 * The variable *CurrentStage* on *BP_Capturer* can be used to see if it is currently Capturing, Uploading, CheckingOut, or not doing anything.
@@ -62,12 +63,13 @@ Rendering:
 ## Best Practices
 ### Settings
 * At least 100 frames at 1024x1024 should be uploaded for best quality.
+### Capturing
+* Test the Capturer first and make sure the output looks good before trying to use the Upload or CaptureThenUpload functions.
+* Use the *Render Parameters* wihtin *BP_Capturer* to make adjustments to the final render if you would like them brighter etc.
 ### Mesh
 * The character should take up as much space possible within the renders without cutting anything off.
 * The mesh should not have any floating pieces.
 * Backfaces should not be missing.
-### Rendered Image
-* Use the *Render Parameters* wihtin *BP_Capturer* to make adjustments to the final render if you would like them brighter etc.
 ### Lighting & Materials
 * Having an evenly lit character will give the best results. Any shadows/lighting on the mesh will be baked into the final model.
 * Pure unlit shaders are not recommended. The meshing process needs at least a bit of shading to figure out the depth of points within a model.
@@ -101,3 +103,8 @@ Rendering:
 [Robot](https://sketchfab.com/3d-models/robot-4-b0c5f2f5ac04402dad029d6516d706b9)
 
 [Mushroom](https://sketchfab.com/3d-models/cuute-mushroom-ffc370ddc6d542d590b9f503d0892ce0)
+
+<br />
+
+## Support
+Join the [Discord](https://discord.gg/JP2fEh4cNP) for any questions, feedback or even just a chat!
