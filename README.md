@@ -58,7 +58,7 @@ Rendering:
 * The Capturer will render out attached Actor, the Actor's children and and *Extra Actors*
 * The variable *CurrentStage* on *BP_Capturer* can be used to see if it is currently Capturing, Uploading, CheckingOut, or not doing anything.
 * Warning: If *Auto-Exposure* is turned on within the project, the render will not match what the viewport looks like. It will probably instead seem much dimmer.
-    * Use the *Render Parameters* on *BP_Capturer* to boost the brightness in this case.
+    * Use the *Render Parameters* on *BP_Capturer* to boost the brightness of the renders in this case.
 
 ## Best Practices
 ### Settings
@@ -66,9 +66,9 @@ Rendering:
 ### Capturing
 * Test the Capturer first and make sure the output looks good before trying to use the Upload or CaptureThenUpload functions.
 * Use the *Render Parameters* wihtin *BP_Capturer* to make adjustments to the final render if you would like them brighter etc.
-### Mesh
+### Model
 * The character should take up as much space possible within the renders without cutting anything off.
-* The mesh should not have any floating pieces.
+* The model should not have any floating pieces.
 * Backfaces should not be missing.
 ### Lighting & Materials
 * Having an evenly lit character will give the best results. Any shadows/lighting on the mesh will be baked into the final model.
