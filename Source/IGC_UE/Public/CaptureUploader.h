@@ -27,7 +27,7 @@ public:
 		FOnQRReceived OnQRReceived;
 
 	UFUNCTION(BlueprintCallable, Category = "IGC", meta = (Keywords = "UploadCaptures"))
-		virtual void UploadCaptures(FString CaptureFolderPath, FString API_Key, FString API_Scale ="");
+		virtual void UploadCaptures(FString CaptureFolderPath, FString API_Key, FString API_Scale = "", FString API_Notes = "");
 
 	UFUNCTION(BlueprintCallable, Category = "IGC", meta = (Keywords = "UploadCaptures"))
 		virtual void Checkout(FString CaptureFolderPath, FString CheckoutURL);
