@@ -4,6 +4,13 @@
 #include "IImageWrapper.h"
 #include "IImageWrapperModule.h"
 #include "ImageUtils.h"
+#include "Misc/FileHelper.h"
+#include "Dom/JsonObject.h"
+#include "Serialization/JsonReader.h"
+#include "Serialization/JsonSerializer.h"
+#include "Modules/ModuleManager.h"
+#include "Engine/Engine.h"
+#include "Engine/Texture2D.h"
 
 TArray<uint8> FStringToUint8(const FString& InString)
 {
@@ -191,7 +198,11 @@ void ACaptureUploader::OnCheckoutResponseReceived(FHttpRequestPtr Request, FHttp
 		if (ImageWrapper->GetRaw(ERGBFormat::BGRA, 8, uncompressedRGBA))
 		{
 			QRTexture = UTexture2D::CreateTransient(ImageWrapper->GetWidth(), ImageWrapper->GetHeight(), PF_B8G8R8A8);
+
+			// seems to not work outside of editor
+			#if WITH_EDITORONLY_DATA
 			QRTexture->MipGenSettings = TMGS_NoMipmaps;
+			#endif
 
 			void* QRTextureData = QRTexture->PlatformData->Mips[0].BulkData.Lock(LOCK_READ_WRITE);
 			FMemory::Memcpy(QRTextureData, uncompressedRGBA.GetData(), uncompressedRGBA.Num());
@@ -208,7 +219,7 @@ void ACaptureUploader::OnCheckoutResponseReceived(FHttpRequestPtr Request, FHttp
 	}
 	else
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Something went wrong while retrieving QR Code"));
+		//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Something went wrong while retrieving QR Code"));
 		OnQRReceived.Broadcast(false, "Error: Connected to API but could not retrieve QR Code", NULL, CheckoutURL);
 		//UE_LOG(LogTemp, Display, TEXT("Something went wrong while retrieving QR Code"));
 	}
