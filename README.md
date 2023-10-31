@@ -71,8 +71,9 @@ Rendering:
 * The model should not have any floating pieces.
 * Backfaces should not be missing.
 ### Lighting & Materials
+* Transparent materials may create artifacts within the final model so it is best not to use them if possible.
 * Having an evenly lit character will give the best results. Any shadows/lighting on the mesh will be baked into the final model.
-* Pure unlit shaders are not recommended. The meshing process needs at least a bit of shading to figure out the depth of points within a model.
+* Pure unlit materials are not recommended. The meshing process needs at least a bit of shading to figure out the depth of points within a model.
 * Recommended lighting set ups:
     * Lit shaders with ambient lighting
     * Lit shaders with fixed lights around character
