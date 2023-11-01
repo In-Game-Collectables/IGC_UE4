@@ -1,7 +1,9 @@
 # IGC_UE
 This document is currently a work in progress.
 
-[In Game Collectables](https://www.igc.studio/) Plugin for Unreal Engine 4.27. This plugin will capture renders spun around a target object and export out a JSON file of the relative camera transforms. It will upload the necessary files to the IGC API to process to re-create a printable mesh.
+[In Game Collectables](https://www.igc.studio/) Plugin for Unreal Engine 5.2. This plugin will capture renders spun around a target object and export out a JSON file of the relative camera transforms. It will upload the necessary files to the IGC API to process to re-create a printable mesh.
+
+Currently under development and may not fully work as intended.
 
 ## How to use
 ### Step 1: Set Up
