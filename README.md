@@ -108,5 +108,14 @@ Rendering:
 
 <br />
 
+## Other Tips
+* If the captures are not matching what is seen on screen: in BP_Capturer/SceneCaptureComponent2D, the Show Flags under Scene Capture can be edited to get the best result
+
+<p align="center">
+<img src="https://github.com/In-Game-Collectables/IGC_UE4/assets/35625367/31d80c8a-8853-4b72-a1f9-97d984492a44" align="top">
+<img src="https://github.com/In-Game-Collectables/IGC_UE4/assets/35625367/19bf56e1-661e-4e6f-99da-8ebf6c5f5396">
+</p>
+
+
 ## Support
 Join the [Discord](https://discord.gg/JP2fEh4cNP) for any questions, feedback or even just a chat!
