@@ -18,7 +18,7 @@
 		{
 			"Name": "IGC_UE",
 			"Type": "Runtime",
-			"LoadingPhase": "Default",
+			"LoadingPhase": "PreDefault",
 			"WhitelistPlatforms" : [
 				"Win64"
 			]
