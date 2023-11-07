@@ -54,13 +54,16 @@ Rendering:
     * To adjust contrast for render outputs
 * Desaturation
     * To lower colour saturation of render outputs
+* bIsUsingPostProcessing
+    * Turn on if any post-processing effects are used
+* bCustomizeShowFlags
+    * Set true if to override and make any changes to SceneCaptureComponent2D's Show Flags
 
 
 ## Notes
 * The Capturer will render out attached Actor, the Actor's children and and *Extra Actors*
 * The variable *CurrentStage* on *BP_Capturer* can be used to see if it is currently Capturing, Uploading, CheckingOut, or not doing anything.
-* Warning: If *Auto-Exposure* is turned on within the project, the render will not match what the viewport looks like. It will probably instead seem much dimmer.
-    * Use the *Render Parameters* on *BP_Capturer* to boost the brightness of the renders in this case.
+
 
 ## Best Practices
 ### Settings
@@ -110,14 +113,19 @@ Rendering:
 
 <br />
 
-## Other Tips
-* If the captures are not matching what is seen on screen: in BP_Capturer/SceneCaptureComponent2D, the Show Flags under Scene Capture can be edited to get the best result
-
+## Extra
+* If the captures are not matching what is seen on screen: in BP_Capturer/SceneCaptureComponent2D, the Show Flags under Scene Capture can be edited to get the best result.
+    * Set the parameter bCustomizeShowFlags to true if doing so.
 <p align="center">
 <img src="https://github.com/In-Game-Collectables/IGC_UE4/assets/35625367/31d80c8a-8853-4b72-a1f9-97d984492a44" align="top">
 <img src="https://github.com/In-Game-Collectables/IGC_UE4/assets/35625367/19bf56e1-661e-4e6f-99da-8ebf6c5f5396">
 </p>
 
+
+## Warnings
+* If *Auto-Exposure* is turned on within the project, the render will not match what the viewport looks like. It will probably instead seem much dimmer.
+    * Use the *Render Parameters* on *BP_Capturer* to boost the brightness of the renders in this case.
+* Currently the SceneCapture cannot capture Lumen Global Illumination so any renders will differ from what is seen in game.
 
 ## Support
 Join the [Discord](https://discord.gg/JP2fEh4cNP) for any questions, feedback or even just a chat!
