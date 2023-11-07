@@ -27,38 +27,6 @@ This document is currently a work in progress.
 ### Step 4: Checkout
 * Use the event dispatcher *onUploadFinished* to get either the link to the Checkout page or the Texture2D of the QR Code
 
-<br />
-
-### Parameters
-
-Capturing:
-* API_Key
-    * API Key for the IGC Platform
-* Frame Count
-    * Number of images to be rendered out
-* Radius
-    * Radius around the target actor the camera will go
-* Camera FOV
-    * Field of View of render camera
-* Render Size
-    * Dimensions of render width & height
-* Extra Actors
-    * Any extra actors that should be rendered out with the Actor
-
-Rendering:
-* Brightness
-    * Brightness multiplier for render outputs
-* Contrast
-    * To adjust contrast for render outputs
-* Desaturation
-    * To lower colour saturation of render outputs
-
-
-## Notes
-* The Capturer will render out attached Actor, the Actor's children and and *Extra Actors*
-* The variable *CurrentStage* on *BP_Capturer* can be used to see if it is currently Capturing, Uploading, CheckingOut, or not doing anything.
-* Warning: If *Auto-Exposure* is turned on within the project, the render will not match what the viewport looks like. It will probably instead seem much dimmer.
-    * Use the *Render Parameters* on *BP_Capturer* to boost the brightness of the renders in this case.
 
 ## Best Practices
 ### Settings
@@ -108,8 +76,14 @@ Rendering:
 
 <br />
 
-## Other Tips
+## Notes
 * If the captures are not matching what is seen on screen: in BP_Capturer/SceneCaptureComponent2D, the Show Flags under Scene Capture can be edited to get the best result
+* The Capturer will render out attached Actor, the Actor's children and and *Extra Actors*
+* The variable *CurrentStage* on *BP_Capturer* can be used to see if it is currently Capturing, Uploading, CheckingOut, or not doing anything.
+
+## Warnings
+* If *Auto-Exposure* is turned on within the project, the render will not match what the viewport looks like. It will probably instead seem much dimmer.
+    * Use the *Render Parameters* on *BP_Capturer* to boost the brightness of the renders in this case.
 
 <p align="center">
 <img src="https://github.com/In-Game-Collectables/IGC_UE4/assets/35625367/31d80c8a-8853-4b72-a1f9-97d984492a44" align="top">
