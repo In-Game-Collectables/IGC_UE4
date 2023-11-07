@@ -80,14 +80,10 @@ This document is currently a work in progress.
 <br />
 
 ## Notes
-* If the captures are not matching what is seen on screen: in BP_Capturer/SceneCaptureComponent2D, the Show Flags under Scene Capture can be edited to get the best result
-    * Set the parameter bCustomizeShowFlags to true if doing so.
 * The Capturer will render out attached Actor, the Actor's children and and *Extra Actors*
 * The variable *CurrentStage* on *BP_Capturer* can be used to see if it is currently Capturing, Uploading, CheckingOut, or not doing anything.
-
-## Warnings
-* If *Auto-Exposure* is turned on within the project, the render will not match what the viewport looks like. It will probably instead seem much dimmer.
-    * Use the *Render Parameters* on *BP_Capturer* to boost the brightness of the renders in this case.
+* If the captures are not matching what is seen on screen: in BP_Capturer/SceneCaptureComponent2D, the Show Flags under Scene Capture can be edited to get the best result
+    * Set the parameter bCustomizeShowFlags to true if doing so.
 
 <p align="center">
 <img src="https://github.com/In-Game-Collectables/IGC_UE4/assets/35625367/31d80c8a-8853-4b72-a1f9-97d984492a44" align="top">
@@ -96,5 +92,11 @@ This document is currently a work in progress.
 
 <br />
 
+## Warnings
+* If *Auto-Exposure* is turned on within the project, the render will not match what the viewport looks like. It will probably instead seem much dimmer.
+    * Use the *Render Parameters* on *BP_Capturer* to boost the brightness of the renders in this case.
+
+<br />
+
 ## Support
-Join the [Discord](https://discord.gg/JP2fEh4cNP) for any questions, feedback or even just a chat!
+Join the [Discord](https://discord.gg/JP2fEh4cNP) for any questions, feedback or even just a chat! (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
