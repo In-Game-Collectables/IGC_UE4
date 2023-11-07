@@ -5,6 +5,8 @@ This document is currently a work in progress.
 
 Currently under development and may not fully work as intended.
 
+<br />
+
 ## How to use
 ### Step 1: Set Up
 * Get your API Key from the [IGC Platform](https://platform.igc.studio/collectables)
@@ -28,6 +30,8 @@ Currently under development and may not fully work as intended.
     * Checkout URL to the Checkout page
 ### Step 4: Checkout
 * Use the event dispatcher *onUploadFinished* to get either the link to the Checkout page or the Texture2D of the QR Code
+
+<br />
 
 ## Best Practices
 ### Settings
@@ -93,6 +97,7 @@ Currently under development and may not fully work as intended.
 <img src="https://github.com/In-Game-Collectables/IGC_UE4/assets/35625367/19bf56e1-661e-4e6f-99da-8ebf6c5f5396">
 </p>
 
+<br />
 
 ## Warnings
 * If *Auto-Exposure* is turned on within the project, the render will not match what the viewport looks like. It will probably instead seem much dimmer.
