@@ -3,6 +3,8 @@ This document is currently a work in progress.
 
 [In Game Collectables](https://www.igc.studio/) Plugin for Unreal Engine 4.27. This plugin will capture renders spun around a target object and export out a JSON file of the relative camera transforms. It will upload the necessary files to the IGC API to process to re-create a printable mesh.
 
+<br />
+
 ## How to use
 ### Step 1: Set Up
 * Get your API Key from the [IGC Platform](https://platform.igc.studio/collectables)
@@ -27,6 +29,7 @@ This document is currently a work in progress.
 ### Step 4: Checkout
 * Use the event dispatcher *onUploadFinished* to get either the link to the Checkout page or the Texture2D of the QR Code
 
+<br />
 
 ## Best Practices
 ### Settings
@@ -78,6 +81,7 @@ This document is currently a work in progress.
 
 ## Notes
 * If the captures are not matching what is seen on screen: in BP_Capturer/SceneCaptureComponent2D, the Show Flags under Scene Capture can be edited to get the best result
+    * Set the parameter bCustomizeShowFlags to true if doing so.
 * The Capturer will render out attached Actor, the Actor's children and and *Extra Actors*
 * The variable *CurrentStage* on *BP_Capturer* can be used to see if it is currently Capturing, Uploading, CheckingOut, or not doing anything.
 
@@ -90,6 +94,7 @@ This document is currently a work in progress.
 <img src="https://github.com/In-Game-Collectables/IGC_UE4/assets/35625367/19bf56e1-661e-4e6f-99da-8ebf6c5f5396">
 </p>
 
+<br />
 
 ## Support
 Join the [Discord](https://discord.gg/JP2fEh4cNP) for any questions, feedback or even just a chat!
