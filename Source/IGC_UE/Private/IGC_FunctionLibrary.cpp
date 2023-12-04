@@ -50,7 +50,7 @@ void UIGC_FunctionLibrary::DeleteAllCaptures(FString FolderPath)
     IFileManager::Get().FindFiles(Files, *FolderPath, TEXT(".png"));
     for (FString file : Files)
     {
-        FString imagePath = FolderPath.Append(file);
+        FString imagePath = FolderPath + file;
         DeleteCapture(imagePath);
     }
 }
