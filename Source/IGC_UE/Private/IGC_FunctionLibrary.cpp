@@ -44,3 +44,25 @@ void UIGC_FunctionLibrary::SaveCaptureInformationToJSON(FString FileNameA, FCapt
     return;
 }
 
+void UIGC_FunctionLibrary::DeleteAllCaptures(FString FolderPath)
+{
+    TArray<FString> Files;
+    IFileManager::Get().FindFiles(Files, *FolderPath, TEXT(".png"));
+    for (FString file : Files)
+    {
+        FString imagePath = FolderPath.Append(file);
+        DeleteCapture(imagePath);
+    }
+}
+
+void UIGC_FunctionLibrary::DeleteCapture(FString FilePath)
+{
+    if (!FilePath.IsEmpty())
+    {
+        if (FPaths::ValidatePath(FilePath) && FPaths::FileExists(FilePath)) {
+            IFileManager& FileManager = IFileManager::Get();
+            FileManager.Delete(*FilePath);
+        }
+    }
+}
+
