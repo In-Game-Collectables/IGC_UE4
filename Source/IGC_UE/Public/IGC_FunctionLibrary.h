@@ -26,5 +26,11 @@ class IGC_UE_API UIGC_FunctionLibrary : public UBlueprintFunctionLibrary
 
 		UFUNCTION(BlueprintCallable, Category = "IGC", meta = (Keywords = "SaveCapture"))
 			static void SaveCaptureInformationToJSON(FString FileNameA, FCaptureInformation CaptureInfo);
+
+		UFUNCTION(BlueprintCallable, Category = "IGC", meta = (Keywords = "DeleteAllCaptures"))
+			static void DeleteAllCaptures(FString FolderPath);
+
+		UFUNCTION(BlueprintCallable, Category = "IGC", meta = (Keywords = "DeleteCapture"))
+			static void DeleteCapture(FString FilePath);
 };
 
