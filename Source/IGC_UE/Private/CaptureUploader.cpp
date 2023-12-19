@@ -47,6 +47,12 @@ void ACaptureUploader::UploadCaptures(FString CaptureFolderPath, FString API_Key
 	FString TransformFile = FPaths::Combine(CaptureFolderPath, TEXT("transforms.json"));
 	FString ImageFolderPath = FPaths::Combine(CaptureFolderPath, TEXT("images"));
 
+	#ifdef USE_ANDROID_FILE
+		extern FString GInternalFilePath;
+		TransformFile = (GInternalFilePath + "/transforms.json");
+		ImageFolderPath = (GInternalFilePath + "/images/");
+	#endif
+
 	TSharedRef<IHttpRequest, ESPMode::ThreadSafe> Request = (&FHttpModule::Get())->CreateRequest();
 	Request->SetURL("https://platform.igc.studio/api/create");
 	Request->SetVerb("POST");

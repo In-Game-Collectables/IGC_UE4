@@ -40,7 +40,13 @@ void UIGC_FunctionLibrary::SaveCaptureInformationToJSON(FString FileNameA, FCapt
 {
     FString JsonString;
     FJsonObjectConverter::UStructToJsonObjectString(CaptureInfo, JsonString, 0, 0);
+
+#ifdef USE_ANDROID_FILE
+    extern FString GInternalFilePath;
+    FFileHelper::SaveStringToFile(JsonString, *(GInternalFilePath + "/transforms.json"));
+#else
     FFileHelper::SaveStringToFile(JsonString, *(FileNameA));
+#endif
     return;
 }
 
@@ -64,5 +70,16 @@ void UIGC_FunctionLibrary::DeleteCapture(FString FilePath)
             FileManager.Delete(*FilePath);
         }
     }
+}
+
+FString UIGC_FunctionLibrary::GetAndroidCapturePath()
+{
+#ifdef USE_ANDROID_FILE
+    extern FString GInternalFilePath;
+    return GInternalFilePath;
+#else
+    return "";
+#endif
+
 }
 
