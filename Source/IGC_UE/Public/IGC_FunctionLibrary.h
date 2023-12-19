@@ -32,5 +32,8 @@ class IGC_UE_API UIGC_FunctionLibrary : public UBlueprintFunctionLibrary
 
 		UFUNCTION(BlueprintCallable, Category = "IGC", meta = (Keywords = "DeleteCapture"))
 			static void DeleteCapture(FString FilePath);
+
+		UFUNCTION(BlueprintPure, Category = "IGC", meta = (Keywords = "GetAndroidCapturePath"))
+			static FString GetAndroidCapturePath();
 };
 
