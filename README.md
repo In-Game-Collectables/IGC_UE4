@@ -5,6 +5,7 @@ This document is currently a work in progress.
 
 Plugin for 5.2 can be found [here](https://github.com/In-Game-Collectables/IGC_UE4/tree/5.2)
 
+This plugin has not been tested for consoles and does not work if *Mobile HDR* is turned on for mobile projects.
 <br />
 
 ## How to use
@@ -98,7 +99,8 @@ Plugin for 5.2 can be found [here](https://github.com/In-Game-Collectables/IGC_U
 ## Warnings
 * If *Auto-Exposure* is turned on within the project, the render will not match what the viewport looks like. It will probably instead seem much dimmer.
     * Use the *Render Parameters* on *BP_Capturer* to boost the brightness of the renders in this case.
-* *Mobile HDR* does not currently work with this plugin
+* *Mobile HDR* does not currently work with this plugin.
+* Has not been tested with consoles yet.
 
 
 <br />
