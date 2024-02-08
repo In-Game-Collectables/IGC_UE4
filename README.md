@@ -5,8 +5,7 @@ This document is currently a work in progress.
 
 Mobile currently has issues and is not supported at the moment.
 
-Currently under development and may not fully work as intended.
-
+This plugin has not been tested for consoles.
 <br />
 
 ## How to use
@@ -102,6 +101,7 @@ Currently under development and may not fully work as intended.
     * Use the *Render Parameters* on *BP_Capturer* to boost the brightness of the renders in this case.
 * Currently the SceneCapture cannot capture Lumen Global Illumination so any renders will differ from what is seen in game.
 * Mobile is not currently working with this plugin.
+* Has not been tested with consoles yet.
 
 <br />
 
