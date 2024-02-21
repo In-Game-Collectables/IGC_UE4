@@ -52,13 +52,16 @@ void UIGC_FunctionLibrary::SaveCaptureInformationToJSON(FString FileNameA, FCapt
 
 void UIGC_FunctionLibrary::DeleteAllCaptures(FString FolderPath)
 {
+#ifndef USE_ANDROID_FILE
     TArray<FString> Files;
     IFileManager::Get().FindFiles(Files, *FolderPath, TEXT(".png"));
+
     for (FString file : Files)
     {
-        FString imagePath = FolderPath.Append(file);
+        FString imagePath = FolderPath + file;
         DeleteCapture(imagePath);
     }
+#endif
 }
 
 void UIGC_FunctionLibrary::DeleteCapture(FString FilePath)
