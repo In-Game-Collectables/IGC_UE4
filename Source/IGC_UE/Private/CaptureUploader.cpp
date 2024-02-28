@@ -42,7 +42,7 @@ void ACaptureUploader::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
-void ACaptureUploader::UploadCaptures(FString CaptureFolderPath, FString API_Key, FString API_Scale, FString API_Notes)
+void ACaptureUploader::UploadCaptures(FString CaptureFolderPath, FString API_Key, TArray<FString> API_Mod, FString API_Scale, FString API_Notes)
 {
 	FString TransformFile = FPaths::Combine(CaptureFolderPath, TEXT("transforms.json"));
 	FString ImageFolderPath = FPaths::Combine(CaptureFolderPath, TEXT("images"));
@@ -100,6 +100,18 @@ void ACaptureUploader::UploadCaptures(FString CaptureFolderPath, FString API_Key
 		CombinedContent.Append(ImageFileRawData);
 	}
 
+	FString ModSetBoundaryString = FString();
+
+	for (FString modification : API_Mod)
+	{ 
+		if (modification != "")
+		{
+			ModSetBoundaryString = GetBoundaryString("image_modifications[]", "", "text/plain");
+			CombinedContent.Append(FStringToUint8(ModSetBoundaryString));
+			CombinedContent.Append(FStringToUint8(modification));
+		}
+	}
+
 	CombinedContent.Append(FStringToUint8(TransformBoundaryString));
 	CombinedContent.Append(TransformFileRawData);
 
@@ -143,10 +155,20 @@ FString ACaptureUploader::GetBoundaryString(FString Name, FString FileName, FStr
 	FString FileBoundaryString = FString(TEXT("\r\n"))
 		+ BoundaryBegin
 		+ FString(TEXT("Content-Disposition: form-data; name=\""))
-		+ Name
-		+ FString(TEXT("\"; filename=\""))
-		+ FileName + "\"\r\n"
-		+ "Content-Type: "
+		+ Name;
+	if (FileName != "")
+	{
+		FileBoundaryString = FileBoundaryString
+			+ FString(TEXT("\"; filename=\""))
+			+ FileName + "\"\r\n";
+	}
+	else
+	{
+		FileBoundaryString = FileBoundaryString
+			+ "\";\""
+			+ "\"\r\n";
+	}
+		FileBoundaryString  = FileBoundaryString + "Content-Type: "
 		+ Type
 		+ FString(TEXT("\r\n\r\n"));
 	return FileBoundaryString;
