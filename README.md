@@ -3,8 +3,6 @@ This document is currently a work in progress.
 
 [In Game Collectables](https://www.igc.studio/) Plugin for Unreal Engine 5.2. This plugin will capture renders spun around a target object and export out a JSON file of the relative camera transforms. It will upload the necessary files to the IGC API to process to re-create a printable mesh.
 
-Mobile currently has issues and is not supported at the moment.
-
 This plugin has not been tested for consoles.
 <br />
 
@@ -100,7 +98,6 @@ This plugin has not been tested for consoles.
 * If *Auto-Exposure* is turned on within the project, the render will not match what the viewport looks like. It will probably instead seem much dimmer.
     * Use the *Render Parameters* on *BP_Capturer* to boost the brightness of the renders in this case.
 * Currently the SceneCapture cannot capture Lumen Global Illumination so any renders will differ from what is seen in game.
-* Mobile is not currently working with this plugin.
 * Has not been tested with consoles yet.
 
 <br />
